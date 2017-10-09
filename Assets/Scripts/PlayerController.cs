@@ -3,7 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    public GameObject floor;
+    public string floorLayerName;
+
     private Rigidbody rb;
     private bool collidingToFloor = false;
 
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == floor)
+        if (collision.gameObject.IsInLayerByName(floorLayerName))
         {
             collidingToFloor = true;
         }
