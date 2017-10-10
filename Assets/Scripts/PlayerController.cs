@@ -26,14 +26,11 @@ public class PlayerController : MonoBehaviour
         collidingToFloor = false;
     }
 
-    private void FixedUpdate()
+    public void Jump()
     {
-        if (Input.anyKeyDown)
+        if (collidingToFloor)
         {
-            if (collidingToFloor)
-            {
-                rb.AddForce(0.0f, rb.mass * 1000.0f, 0.0f);
-            }
+            rb.AddForce(0.0f, rb.mass * 1000.0f, 0.0f);
         }
     }
 }
