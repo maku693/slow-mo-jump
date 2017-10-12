@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private bool collidingToFloor = false;
     private Animator animator;
 
-    private void OnEnable()
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
