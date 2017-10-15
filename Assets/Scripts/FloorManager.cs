@@ -1,9 +1,39 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    public void SpawnNextFloor()
+    public GameObject floorPrefab;
+
+    public GameObject player;
+    public GameObject mainCamera;
+
+    private List<GameObject> floors = new List<GameObject>(10);
+
+    private void Start()
     {
-        // TODO: Implement
+        SetupFloors();
     }
+
+    private void SetupFloors()
+    {
+        var floorSize = floorPrefab.GetComponent<MeshRenderer>().bounds.size;
+        for (var i = 0; i < floors.Capacity; i++)
+        {
+            var floor = Instantiate(floorPrefab);
+            floor.transform.position = Vector3.Scale(Vector3.forward, floorSize) * i;
+            floors.Add(floor);
+        }
+    }
+
+    //private void Update()
+    //{
+
+    //}
+
+    //private void SpawnNextFloor()
+    //{
+    //    // TODO: Implement
+    //}
 }
