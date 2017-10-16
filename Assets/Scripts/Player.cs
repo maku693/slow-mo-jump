@@ -1,17 +1,27 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
     [SerializeField]
     private string floorLayerName;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float jumpPower;
 
     private bool collidingToFloor = false;
-    private Animator animator;
+    private Rigidbody rb;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        var movement = Vector3.forward * speed * Time.fixedDeltaTime;
+        rb.MovePosition(transform.position + movement);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,7 +41,7 @@ public class Player : MonoBehaviour
     {
         if (collidingToFloor)
         {
-            animator.SetTrigger("Jump");
+            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         }
     }
 }
