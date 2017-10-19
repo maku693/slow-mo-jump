@@ -225,8 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorLayerName: Floor
-  speed: 10
-  jumpPower: 10
+  speed: 2
+  jumpPower: 8
 --- !u!1 &657494494
 GameObject:
   m_ObjectHideFlags: 0
