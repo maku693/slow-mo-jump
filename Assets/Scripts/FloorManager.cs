@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    public GameObject floorPrefab;
+    [SerializeField]
+    private GameObject floorPrefab;
 
-    public GameObject player;
-    public GameObject mainCamera;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private GameObject mainCamera;
+
+    [SerializeField]
+    private float moveSpeed;
 
     private List<GameObject> floors = new List<GameObject>(10);
 

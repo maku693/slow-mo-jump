@@ -4,44 +4,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private string floorLayerName;
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private float jumpPower;
+    private float moveSpeed;
+    private Vector3 moveAxis;
 
-    private bool collidingToFloor = false;
-    private Rigidbody rb;
-
-    private void Start()
+    private void Update()
     {
-        rb = GetComponent<Rigidbody>();
+        var movement = moveAxis * moveSpeed * Time.deltaTime;
+        transform.position += movement;
     }
 
-    private void FixedUpdate()
+    public void MoveToLeft()
     {
-        var movement = Vector3.forward * speed * Time.fixedDeltaTime;
-        rb.MovePosition(transform.position + movement);
+        moveAxis = Vector3.left;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void MoveToRight()
     {
-        if (collision.gameObject.IsInLayerByName(floorLayerName))
-        {
-            collidingToFloor = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        collidingToFloor = false;
-    }
-
-    public void Jump()
-    {
-        if (collidingToFloor)
-        {
-            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-        }
+        moveAxis = Vector3.right;
     }
 }
