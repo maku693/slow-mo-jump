@@ -1,21 +1,14 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class InputManager : MonoBehaviour, IMoveHandler
+public class InputManager : MonoBehaviour
 {
     [SerializeField]
     private Player player;
+    [SerializeField]
+    private string axisName;
 
-    public void OnMove(AxisEventData eventData)
+    public void Update()
     {
-        switch (eventData.moveDir)
-        {
-            case MoveDirection.Left:
-                player.MoveToLeft();
-                break;
-            case MoveDirection.Right:
-                player.MoveToRight();
-                break;
-        }
+        player.position = Input.GetAxis(axisName);
     }
 }

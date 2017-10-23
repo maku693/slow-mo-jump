@@ -3,23 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    public float position;
+    public float velocity;
+
     [SerializeField]
-    private float moveSpeed;
-    private Vector3 moveAxis;
+    private Transform leftMost;
+    [SerializeField]
+    private Transform rightMost;
 
     private void Update()
     {
-        var movement = moveAxis * moveSpeed * Time.deltaTime;
-        transform.position += movement;
-    }
-
-    public void MoveToLeft()
-    {
-        moveAxis = Vector3.left;
-    }
-
-    public void MoveToRight()
-    {
-        moveAxis = Vector3.right;
+        transform.position = Vector3.Lerp(leftMost.position, rightMost.position, (position + 1.0f) * 0.5f);
+        Debug.Log(transform.position);
     }
 }
