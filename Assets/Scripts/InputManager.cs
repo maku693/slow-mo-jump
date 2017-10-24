@@ -9,6 +9,13 @@ public class InputManager : MonoBehaviour
 
     public void Update()
     {
-        player.position = Input.GetAxis(axisName);
+        if (Input.GetAxis(axisName) < 0)
+        {
+            player.MoveToLeft();
+        }
+        else if (Input.GetAxis(axisName) > 0)
+        {
+            player.MoveToRight();
+        }
     }
 }
